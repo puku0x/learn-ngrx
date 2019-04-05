@@ -1,0 +1,13 @@
+form {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+form > *:not(:first-child) {
+  margin-left: 8px;
+}
+
+mat-form-field {
+  flex: 1 0 auto;
+}

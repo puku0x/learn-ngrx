@@ -1,0 +1,6 @@
+<form [formGroup]="form" (ngSubmit)="form.valid && onSubmit()" novalidate>
+  <mat-form-field>
+    <input matInput formControlName="text" placeholder="Todo" />
+  </mat-form-field>
+  <button mat-button [disabled]="loading || form.invalid">Add</button>
+</form>
