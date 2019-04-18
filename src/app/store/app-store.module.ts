@@ -9,7 +9,12 @@ import { reducers, metaReducers } from './reducers';
 
 @NgModule({
   imports: [
-    StoreModule.forRoot(reducers, { metaReducers }),
+    StoreModule.forRoot(reducers, {
+      metaReducers,
+      runtimeChecks: {
+        strictImmutability: true
+      }
+    }),
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({
       logOnly: environment.production,

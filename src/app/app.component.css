@@ -32,6 +32,9 @@ header {
 }
 
 main {
+  width: 100%;
+  max-width: 920px;
+  margin: 0 auto;
   padding: 16px;
 }
 

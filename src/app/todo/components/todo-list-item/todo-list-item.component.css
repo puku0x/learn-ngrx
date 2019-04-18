@@ -1,13 +1,7 @@
-form {
-  display: flex;
-  width: 100%;
-  align-items: center;
+.delete-button {
+  color: #aaa;
 }
 
-form > *:not(:first-child) {
-  margin-left: 8px;
-}
-
-mat-form-field {
-  flex: 1 0 auto;
+.delete-button:hover {
+  color: #6f6f6f;
 }

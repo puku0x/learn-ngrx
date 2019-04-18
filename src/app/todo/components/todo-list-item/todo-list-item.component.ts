@@ -6,7 +6,6 @@ import {
   EventEmitter,
   OnInit
 } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { Todo } from '../../../models';
 
@@ -22,31 +21,10 @@ export class TodoListItemComponent implements OnInit {
   @Output() update = new EventEmitter<Todo>();
   @Output() remove = new EventEmitter<string>();
 
-  form: FormGroup;
-
   /**
    * Constructor
    */
-  constructor(private fb: FormBuilder) {}
+  constructor() {}
 
-  ngOnInit() {
-    this.form = this.fb.group({
-      text: [this.todo.text, Validators.required]
-    });
-  }
-
-  /**
-   * Update
-   */
-  onUpdate() {
-    const text: string = this.form.get('text').value;
-    this.update.emit({ ...this.todo, text });
-  }
-
-  /**
-   * Remove
-   */
-  onRemove() {
-    this.remove.emit(this.todo.id);
-  }
+  ngOnInit() {}
 }

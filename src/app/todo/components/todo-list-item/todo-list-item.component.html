@@ -1,11 +1,6 @@
-<form [formGroup]="form" (ngSubmit)="form.valid && onUpdate()" novalidate>
-  <mat-form-field>
-    <input matInput formControlName="text" />
-  </mat-form-field>
-  <button mat-button [disabled]="loading || form.invalid" (click)="onUpdate()">
-    Update
+<mat-list-item (click)="update.emit(todo)">
+  <a matLine>{{ todo.text }}</a>
+  <button class="delete-button" mat-icon-button (click)="remove.emit(todo.id)">
+    <mat-icon>delete</mat-icon>
   </button>
-  <button mat-button [disabled]="loading || form.invalid" (click)="onRemove()">
-    Remove
-  </button>
-</form>
+</mat-list-item>

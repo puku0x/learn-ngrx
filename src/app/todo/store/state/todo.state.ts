@@ -12,6 +12,8 @@ export const featureName = 'todo';
  */
 export interface State extends EntityState<Todo> {
   loading: boolean;
+  selectedId?: string;
+  error?: any;
 }
 
 /**

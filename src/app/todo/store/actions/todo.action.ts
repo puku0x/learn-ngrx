@@ -1,4 +1,4 @@
-import { createAction, union } from '@ngrx/store';
+import { createAction } from '@ngrx/store';
 
 import { Todo } from '../../../models';
 
@@ -48,7 +48,7 @@ export const createFailure = createAction(
 );
 
 export const update = createAction(
-  '[Todo Page] Update',
+  '[Todo Edit Dialog] Update',
   (payload: { todo: Partial<Todo> }) => ({ payload })
 );
 
@@ -77,22 +77,17 @@ export const removeFailure = createAction(
   (payload: { error: any }) => ({ payload })
 );
 
-const all = union({
-  loadAll,
-  loadAllSuccess,
-  loadAllFailure,
-  load,
-  loadSuccess,
-  loadFailure,
-  create,
-  createSuccess,
-  createFailure,
-  update,
-  updateSuccess,
-  updateFailure,
-  remove,
-  removeSuccess,
-  removeFailure
-});
+export const showCreateDialog = createAction(
+  '[Todo Page] Show Create Dialog',
+  (payload: {} = {}) => ({ payload })
+);
 
-export type ActionUnion = typeof all;
+export const showEditDialog = createAction(
+  '[Todo Page] Show Edit Dialog',
+  (payload: { todo: Todo }) => ({ payload })
+);
+
+export const showRemoveDialog = createAction(
+  '[Todo Page] Show Remove Dialog',
+  (payload: { id: string }) => ({ payload })
+);

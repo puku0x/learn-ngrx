@@ -1,17 +1,19 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
-import { TodoRoutingModule } from './todo-routing.module';
-import { TodoStoreModule } from './store/todo-store.module';
+import { SharedModule } from '../shared';
+import { MaterialModule } from '../material';
 import { TodoComponentsModule } from './components';
-import { TodoComponent } from './todo.component';
+import { TodoContainersModule } from './containers';
+import { TodoStoreModule } from './store';
+import { TodoRoutingModule } from './todo-routing.module';
 
 @NgModule({
-  declarations: [TodoComponent],
   imports: [
-    CommonModule,
+    SharedModule,
+    MaterialModule,
     TodoRoutingModule,
     TodoStoreModule,
+    TodoContainersModule,
     TodoComponentsModule
   ]
 })

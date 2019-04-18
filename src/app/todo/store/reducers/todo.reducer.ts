@@ -1,3 +1,5 @@
+import { createReducer, on } from '@ngrx/store';
+
 import { State, initialState, adapter } from '../state';
 import * as TodoActions from '../actions';
 
@@ -6,59 +8,67 @@ import * as TodoActions from '../actions';
  * @param state State
  * @param action Action
  */
-export function reducer(
-  state = initialState,
-  action: TodoActions.ActionUnion
-): State {
-  switch (action.type) {
-    case TodoActions.loadAll.type: {
+export const reducer = createReducer<State>(
+  [
+    on(TodoActions.loadAll, (state, action) => {
       return { ...state, loading: true };
-    }
-    case TodoActions.loadAllSuccess.type: {
+    }),
+    on(TodoActions.loadAllSuccess, (state, action) => {
       const { todos } = action.payload;
       return adapter.addAll(todos, { ...state, loading: false });
-    }
-    case TodoActions.loadAllFailure.type: {
-      return { ...state, loading: false };
-    }
-    case TodoActions.create.type: {
+    }),
+    on(TodoActions.loadAllFailure, (state, action) => {
+      const { error } = action.payload;
+      return { ...state, loading: false, error };
+    }),
+    on(TodoActions.load, (state, action) => {
+      const { id } = action.payload;
+      return { ...state, loading: true, selectedId: id };
+    }),
+    on(TodoActions.loadSuccess, (state, action) => {
+      const { todo } = action.payload;
+      return adapter.upsertOne(todo, { ...state, loading: false });
+    }),
+    on(TodoActions.loadFailure, (state, action) => {
+      const { error } = action.payload;
+      return { ...state, loading: false, error };
+    }),
+    on(TodoActions.create, (state, action) => {
       return { ...state, loading: true };
-    }
-    case TodoActions.createSuccess.type: {
+    }),
+    on(TodoActions.createSuccess, (state, action) => {
       const { todo } = action.payload;
       return adapter.addOne(todo, { ...state, loading: false });
-    }
-    case TodoActions.createFailure.type: {
-      return { ...state, loading: false };
-    }
-    case TodoActions.update.type: {
+    }),
+    on(TodoActions.createFailure, (state, action) => {
+      const { error } = action.payload;
+      return { ...state, loading: false, error };
+    }),
+    on(TodoActions.update, (state, action) => {
       return { ...state, loading: true };
-    }
-    case TodoActions.updateSuccess.type: {
+    }),
+    on(TodoActions.updateSuccess, (state, action) => {
       const { todo } = action.payload;
       return adapter.updateOne(
-        {
-          id: todo.id,
-          changes: todo
-        },
+        { id: todo.id, changes: todo },
         { ...state, loading: false }
       );
-    }
-    case TodoActions.updateFailure.type: {
-      return { ...state, loading: false };
-    }
-    case TodoActions.remove.type: {
+    }),
+    on(TodoActions.updateFailure, (state, action) => {
+      const { error } = action.payload;
+      return { ...state, loading: false, error };
+    }),
+    on(TodoActions.remove, (state, action) => {
       return { ...state, loading: true };
-    }
-    case TodoActions.removeSuccess.type: {
+    }),
+    on(TodoActions.removeSuccess, (state, action) => {
       const { id } = action.payload;
       return adapter.removeOne(id, { ...state, loading: false });
-    }
-    case TodoActions.removeFailure.type: {
-      return { ...state, loading: false };
-    }
-    default: {
-      return state;
-    }
-  }
-}
+    }),
+    on(TodoActions.removeFailure, (state, action) => {
+      const { error } = action.payload;
+      return { ...state, loading: false, error };
+    })
+  ],
+  initialState
+);
