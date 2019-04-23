@@ -1,13 +1,6 @@
-import {
-  Component,
-  ChangeDetectionStrategy,
-  EventEmitter,
-  OnInit,
-  OnDestroy
-} from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { filter, takeUntil } from 'rxjs/operators';
 
 import { Todo } from '../../../models';
 import { TodoFacade } from '../../store/facades';

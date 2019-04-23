@@ -11,12 +11,11 @@ import { TodoPageComponent } from './todo-page/todo-page.component';
 /**
  * Container components
  */
-const components = [];
+const components = [TodoPageComponent];
 const dialogs = [
   TodoCreateDialogComponent,
   TodoDeleteDialogComponent,
-  TodoEditDialogComponent,
-  TodoPageComponent
+  TodoEditDialogComponent
 ];
 
 @NgModule({

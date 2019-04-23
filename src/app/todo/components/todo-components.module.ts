@@ -9,12 +9,10 @@ import { TodoListItemComponent } from './todo-list-item/todo-list-item.component
  * Presentational components
  */
 const components = [TodoListComponent, TodoListItemComponent];
-const dialogs = [];
 
 @NgModule({
   imports: [SharedModule, MaterialModule],
-  exports: [...components, ...dialogs],
-  declarations: [...components, ...dialogs],
-  entryComponents: [...dialogs]
+  exports: [...components],
+  declarations: [...components]
 })
 export class TodoComponentsModule {}
