@@ -1,6 +1,10 @@
 <mat-list-item (click)="update.emit(todo)">
   <a matLine>{{ todo.text }}</a>
-  <button class="delete-button" mat-icon-button (click)="remove.emit(todo.id)">
+  <button
+    class="delete-button"
+    mat-icon-button
+    (click)="remove.emit(todo.id); $event.stopPropagation()"
+  >
     <mat-icon>delete</mat-icon>
   </button>
 </mat-list-item>
